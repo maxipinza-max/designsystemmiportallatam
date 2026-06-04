@@ -1,0 +1,1174 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Design System Angular | Mi Portal Corporativo LATAM</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Roboto+Condensed:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --dm-blue:#0066CC;
+  --dm-blue-900:#003A73;
+  --dm-blue-800:#004F9E;
+  --dm-blue-700:#0B5FFF;
+  --dm-blue-100:#E8F2FF;
+  --dm-blue-050:#F3F8FF;
+  --dm-orange:#E6750C;
+  --dm-orange-100:#FFF0E3;
+  --dm-success:#27AE60;
+  --dm-success-100:#E7F6EE;
+  --dm-warning:#E2B93B;
+  --dm-warning-100:#FFF8DB;
+  --dm-error:#EB5757;
+  --dm-error-100:#FDECEC;
+  --dm-info:#2F80ED;
+  --dm-info-100:#EAF3FF;
+  --gray-900:#171D25;
+  --gray-850:#303030;
+  --gray-800:#333333;
+  --gray-700:#4F4F4F;
+  --gray-600:#656F77;
+  --gray-500:#828282;
+  --gray-300:#BDBDBD;
+  --gray-200:#E0E0E0;
+  --gray-100:#F5F6F8;
+  --white:#FFFFFF;
+  --black:#000000;
+  --kaufmann-blue:#003252;
+  --kaufmann-cyan:#00ADEF;
+  --radius-xs:4px;
+  --radius-sm:8px;
+  --radius-md:10px;
+  --radius-lg:15px;
+  --shadow-sm:0 2px 8px rgba(0,0,0,.08);
+  --shadow-md:0 8px 24px rgba(0,0,0,.10);
+  --shadow-lg:0 18px 54px rgba(0,0,0,.14);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:"Roboto",Arial,sans-serif;
+  background:var(--gray-100);
+  color:var(--gray-900);
+}
+a{color:inherit;text-decoration:none}
+.icon{
+  width:18px;height:18px;display:inline-block;flex:none;
+  stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;
+}
+.icon-sm{width:15px;height:15px}
+.icon-md{width:22px;height:22px}
+.icon-lg{width:34px;height:34px}
+.icon-solid{fill:currentColor;stroke:none}
+.icon-badge{
+  width:32px;height:32px;border-radius:50%;display:grid;place-items:center;flex:none;
+  background:rgba(255,255,255,.64);
+}
+.app{display:grid;grid-template-columns:292px minmax(0,1fr);min-height:100vh}
+.side{
+  position:sticky;top:0;height:100vh;overflow:auto;
+  background:var(--gray-900);color:var(--white);
+  padding:24px 18px;
+}
+.brand{padding:0 6px 22px;border-bottom:1px solid rgba(255,255,255,.12)}
+.brand-mark{font-family:"Roboto Condensed",sans-serif;font-size:27px;font-weight:700;letter-spacing:.02em}
+.brand-mark span{color:var(--dm-blue)}
+.brand small{display:block;margin-top:7px;color:rgba(255,255,255,.66);line-height:1.45}
+.nav{padding-top:18px;display:grid;gap:4px}
+.nav a{
+  display:flex;align-items:center;gap:10px;
+  padding:10px 11px;border-radius:var(--radius-sm);
+  color:rgba(255,255,255,.72);font-size:13px;font-weight:500;
+}
+.nav a:hover{background:rgba(255,255,255,.08);color:#fff}
+.nav b{
+  display:grid;place-items:center;width:24px;height:24px;border-radius:7px;
+  background:rgba(0,102,204,.24);font-size:11px;color:#fff;
+}
+.side-note{
+  margin-top:22px;padding:13px;border-radius:var(--radius-md);
+  background:rgba(0,102,204,.18);border:1px solid rgba(0,102,204,.36);
+  font-size:12px;line-height:1.55;color:rgba(255,255,255,.78);
+}
+.main{min-width:0}
+.hero{
+  min-height:610px;color:#fff;
+  background:
+    linear-gradient(180deg,rgba(0,0,0,.18),rgba(0,0,0,.46)),
+    linear-gradient(90deg,rgba(0,0,0,.92) 0%,rgba(0,0,0,.64) 45%,rgba(0,0,0,.22) 100%),
+    url("https://www.divemotor.com/documents/d/guest/categoria-camion") center/cover;
+  display:grid;align-content:end;padding:64px min(7vw,88px);
+}
+.eyebrow{
+  display:inline-flex;align-items:center;gap:8px;width:max-content;
+  padding:6px 11px;border-radius:999px;background:rgba(255,255,255,.12);
+  border:1px solid rgba(255,255,255,.2);font-size:11px;font-weight:700;
+  letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.86);
+}
+.hero h1{
+  font-family:"Roboto Condensed",sans-serif;
+  font-size:clamp(44px,7vw,82px);line-height:.98;font-weight:700;
+  max-width:880px;margin-top:22px;
+}
+.hero p{max-width:700px;margin-top:18px;color:rgba(255,255,255,.78);font-size:18px;line-height:1.55}
+.hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:30px}
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:8px;
+  min-height:44px;padding:0 18px;border:1px solid transparent;border-radius:var(--radius-sm);
+  font-family:"Roboto Condensed",sans-serif;font-size:15px;font-weight:700;letter-spacing:.01em;
+}
+.btn-primary{background:var(--dm-blue);color:#fff;box-shadow:var(--shadow-sm)}
+.btn-primary:hover{background:var(--dm-blue-800)}
+.btn-secondary{background:var(--dm-orange);color:#fff}
+.btn-outline{border-color:rgba(255,255,255,.58);color:#fff;background:rgba(255,255,255,.06)}
+.btn-light{background:#fff;color:var(--gray-900);border-color:var(--gray-200)}
+.section{padding:58px min(6vw,76px)}
+.section.white{background:#fff}
+.section.dark{background:var(--gray-900);color:#fff}
+.section-head{max-width:920px;margin-bottom:28px}
+.section-head h2{
+  font-family:"Roboto Condensed",sans-serif;font-size:clamp(30px,4vw,48px);
+  line-height:1.05;font-weight:700;color:inherit;
+}
+.section-head p{margin-top:10px;color:var(--gray-600);font-size:15px;line-height:1.65}
+.dark .section-head p{color:rgba(255,255,255,.67)}
+.grid{display:grid;gap:18px}
+.g2{grid-template-columns:repeat(2,minmax(0,1fr))}
+.g3{grid-template-columns:repeat(3,minmax(0,1fr))}
+.g4{grid-template-columns:repeat(4,minmax(0,1fr))}
+.panel{
+  background:#fff;border:1px solid var(--gray-200);border-radius:var(--radius-lg);
+  box-shadow:var(--shadow-sm);padding:22px;
+}
+.dark .panel{background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.12)}
+.panel h3{
+  font-family:"Roboto Condensed",sans-serif;font-size:23px;line-height:1.15;
+  margin-bottom:9px;color:inherit;
+}
+.panel p,.panel li{font-size:14px;line-height:1.6;color:var(--gray-600)}
+.dark .panel p,.dark .panel li{color:rgba(255,255,255,.68)}
+.list{display:grid;gap:8px;margin-top:12px;padding-left:18px}
+.pill-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
+.pill{display:inline-flex;align-items:center;gap:6px;border-radius:999px;padding:6px 10px;font-size:12px;font-weight:700;background:var(--gray-100);color:var(--gray-700)}
+.pill.blue{background:var(--dm-blue-100);color:var(--dm-blue-900)}
+.pill.orange{background:var(--dm-orange-100);color:#8B4300}
+.pill.ok{background:var(--dm-success-100);color:#146C38}
+.swatch{min-height:136px;border-radius:var(--radius-lg);overflow:hidden;border:1px solid rgba(0,0,0,.08);background:#fff}
+.swatch-color{height:72px}
+.swatch-body{padding:12px 14px}
+.swatch b{display:block;font-family:"Roboto Condensed",sans-serif;font-size:16px}
+.swatch code{display:block;margin-top:4px;color:var(--gray-600);font-size:12px}
+.type-spec{display:grid;gap:12px}
+.type-line{
+  display:grid;grid-template-columns:130px minmax(0,1fr) 110px;gap:18px;
+  align-items:baseline;padding:14px 0;border-bottom:1px solid var(--gray-200);
+}
+.type-line strong{font-family:"Roboto Condensed",sans-serif;color:var(--dm-blue)}
+.type-line .sample{font-family:"Roboto Condensed",sans-serif;font-weight:700}
+.type-line .meta{font-size:12px;color:var(--gray-600)}
+.tokens{
+  background:#101820;color:#d8e8f6;border-radius:var(--radius-lg);
+  padding:20px;overflow:auto;border:1px solid rgba(255,255,255,.08);
+}
+pre{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:12.5px;line-height:1.6;white-space:pre-wrap}
+.component-demo{
+  border:1px solid var(--gray-200);border-radius:var(--radius-lg);overflow:hidden;background:#fff;
+}
+.demo-top{
+  display:flex;align-items:center;justify-content:space-between;gap:14px;
+  padding:13px 16px;background:var(--gray-100);border-bottom:1px solid var(--gray-200);
+}
+.demo-top h3{font-family:"Roboto Condensed",sans-serif;font-size:22px}
+.demo-body{padding:20px;display:grid;gap:16px}
+.toolbar{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.field{
+  min-height:42px;border:1px solid var(--gray-200);border-radius:var(--radius-sm);
+  padding:0 12px;display:flex;align-items:center;justify-content:space-between;
+  background:#fff;color:var(--gray-700);font-size:14px;min-width:180px;
+}
+.radio-group{display:flex;gap:10px;flex-wrap:wrap}
+.radio{
+  display:flex;align-items:center;gap:8px;border:1px solid var(--gray-200);border-radius:var(--radius-sm);
+  padding:10px 12px;font-size:14px;background:#fff;
+}
+.radio i{width:16px;height:16px;border:2px solid var(--gray-300);border-radius:50%;display:block;position:relative}
+.radio.active{border-color:var(--dm-blue);background:var(--dm-blue-050)}
+.radio.active i{border-color:var(--dm-blue)}
+.radio.active i:after{content:"";position:absolute;inset:3px;background:var(--dm-blue);border-radius:50%}
+.stat-card{display:grid;gap:9px}
+.stat-card .value{font-family:"Roboto Condensed",sans-serif;font-size:34px;font-weight:700;color:var(--dm-blue)}
+.stat-card .label{font-size:13px;color:var(--gray-600)}
+.media-card{padding:0;overflow:hidden}
+.media-visual{height:160px;background-size:cover;background-position:center;display:block}
+.media-card .panel-content{padding:18px}
+.alert{
+  display:grid;grid-template-columns:32px minmax(0,1fr) auto;gap:12px;align-items:start;
+  padding:14px;border-radius:var(--radius-md);border:1px solid;
+}
+.alert .icon-badge .icon{width:17px;height:17px}
+.alert strong{display:block;font-size:14px;margin-bottom:3px}
+.alert p{font-size:13px;line-height:1.45;color:var(--gray-700)}
+.alert.info{background:var(--dm-info-100);border-color:#BCD9FF;color:#155BB5}
+.alert.warn{background:var(--dm-warning-100);border-color:#F1DA73;color:#765E00}
+.alert.ok{background:var(--dm-success-100);border-color:#A9E0C2;color:#146C38}
+.alert.error{background:var(--dm-error-100);border-color:#F4B5B5;color:#A42D2D}
+.stepper{display:grid;grid-template-columns:repeat(4,1fr);gap:0}
+.step{position:relative;padding:0 12px 0 0}
+.step:before{content:"";position:absolute;left:32px;right:0;top:16px;height:2px;background:var(--gray-200)}
+.step:last-child:before{display:none}
+.step-num{
+  position:relative;z-index:1;width:34px;height:34px;border-radius:50%;
+  display:grid;place-items:center;background:var(--gray-200);font-weight:700;color:var(--gray-700)
+}
+.step-num .icon{width:17px;height:17px}
+.step.done .step-num,.step.active .step-num{background:var(--dm-blue);color:#fff}
+.step b{display:block;margin-top:9px;font-size:13px}
+.step span{display:block;margin-top:3px;font-size:12px;color:var(--gray-600);line-height:1.35}
+.accordion{border:1px solid var(--gray-200);border-radius:var(--radius-md);overflow:hidden}
+.acc-item+.acc-item{border-top:1px solid var(--gray-200)}
+.acc-title{display:flex;justify-content:space-between;gap:10px;padding:15px 16px;font-weight:700;background:#fff}
+.acc-body{padding:0 16px 16px;color:var(--gray-600);font-size:14px;line-height:1.55}
+.acc-item.closed .acc-body{display:none}
+.table-wrap{overflow:auto;border:1px solid var(--gray-200);border-radius:var(--radius-md)}
+table{width:100%;border-collapse:collapse;font-size:13px;background:#fff;min-width:760px}
+th{
+  text-align:left;padding:12px 14px;background:var(--gray-100);
+  color:var(--gray-700);font-size:11px;text-transform:uppercase;letter-spacing:.06em;
+}
+td{padding:13px 14px;border-top:1px solid var(--gray-200);color:var(--gray-800)}
+.badge{display:inline-flex;align-items:center;gap:6px;border-radius:999px;padding:5px 9px;font-size:12px;font-weight:700}
+.badge.ok{background:var(--dm-success-100);color:#146C38}
+.badge.warn{background:var(--dm-warning-100);color:#765E00}
+.badge.info{background:var(--dm-info-100);color:#155BB5}
+.badge.error{background:var(--dm-error-100);color:#A42D2D}
+.menu-demo{
+  border-radius:var(--radius-lg);overflow:hidden;border:1px solid rgba(255,255,255,.12);
+  background:#080B10;color:#fff;
+}
+.menu-bar{height:58px;display:flex;align-items:center;justify-content:space-between;padding:0 18px;border-bottom:1px solid rgba(255,255,255,.1)}
+.menu-logo{font-family:"Roboto Condensed",sans-serif;font-size:24px;font-weight:700}
+.menu-links{display:flex;gap:4px;flex-wrap:wrap}
+.menu-links span{padding:8px 10px;border-radius:var(--radius-sm);font-family:"Roboto Condensed",sans-serif;font-weight:500;color:rgba(255,255,255,.74)}
+.menu-links span.active{background:var(--dm-blue);color:#fff}
+.menu-content{display:grid;grid-template-columns:1fr 1fr;gap:0}
+.menu-tile{min-height:180px;padding:18px;display:flex;align-items:end;background-size:cover;background-position:center;position:relative}
+.menu-tile:before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.08),rgba(0,0,0,.65))}
+.menu-tile b{position:relative;font-family:"Roboto Condensed",sans-serif;font-size:24px}
+.library-map{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:15px}
+.lib-card{border:1px solid var(--gray-200);background:#fff;border-radius:var(--radius-lg);padding:18px}
+.lib-card h3{font-family:"Roboto Condensed",sans-serif;font-size:22px;color:var(--dm-blue);margin-bottom:8px}
+.lib-card ul{display:grid;gap:6px;padding-left:18px;color:var(--gray-600);font-size:14px;line-height:1.45}
+.spec-table{min-width:900px}
+.do-dont{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.quote{
+  border-left:4px solid var(--dm-orange);padding:14px 18px;background:var(--dm-orange-100);
+  border-radius:0 var(--radius-md) var(--radius-md) 0;color:#703600;line-height:1.6;font-size:14px;
+}
+.footer{padding:34px min(6vw,76px);background:#080B10;color:rgba(255,255,255,.72);font-size:13px;line-height:1.6}
+.source-list{display:grid;gap:5px;margin-top:10px}
+.source-list a{color:#BFD9FF;text-decoration:underline}
+.interactive-zone{margin-top:22px;display:grid;gap:18px}
+.icon-library{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:10px}
+.icon-sample{
+  min-height:92px;border:1px solid var(--gray-200);border-radius:var(--radius-md);
+  display:grid;place-items:center;gap:7px;padding:12px;background:#fff;color:var(--gray-800);
+}
+.icon-sample .icon{width:27px;height:27px;color:var(--dm-blue)}
+.icon-sample span{font-size:11px;color:var(--gray-600);font-weight:700;text-align:center}
+.slider{position:relative;overflow:hidden;border-radius:var(--radius-lg);min-height:340px;background:#080B10;color:#fff}
+.slide-item{
+  position:absolute;inset:0;opacity:0;transition:opacity .35s ease;
+  display:grid;align-content:end;padding:28px;background-size:cover;background-position:center;
+}
+.slide-item:before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.08),rgba(0,0,0,.72))}
+.slide-item.active{opacity:1}
+.slide-copy{position:relative;max-width:520px}
+.slide-copy h3{font-family:"Roboto Condensed",sans-serif;font-size:36px;line-height:1.05;margin-bottom:8px}
+.slide-copy p{color:rgba(255,255,255,.78);line-height:1.55}
+.slider-controls{position:absolute;right:18px;bottom:18px;z-index:2;display:flex;gap:8px}
+.icon-btn{
+  width:42px;height:42px;border-radius:50%;border:1px solid rgba(255,255,255,.36);
+  background:rgba(0,0,0,.35);color:#fff;display:grid;place-items:center;cursor:pointer;font-weight:700;
+}
+.dots{position:absolute;left:28px;bottom:18px;z-index:2;display:flex;gap:8px}
+.dot-btn{width:9px;height:9px;border-radius:50%;border:0;background:rgba(255,255,255,.38);cursor:pointer}
+.dot-btn.active{background:#fff}
+.dropdown{position:relative;min-width:220px}
+.dropdown-toggle{
+  width:100%;min-height:44px;border:1px solid var(--gray-200);background:#fff;border-radius:var(--radius-sm);
+  padding:0 12px;display:flex;align-items:center;justify-content:space-between;gap:12px;
+  color:var(--gray-800);font:500 14px "Roboto",sans-serif;cursor:pointer;
+}
+.dropdown-menu{
+  position:absolute;top:calc(100% + 6px);left:0;right:0;z-index:10;
+  background:#fff;border:1px solid var(--gray-200);border-radius:var(--radius-md);
+  box-shadow:var(--shadow-md);padding:6px;display:none;
+}
+.dropdown.open .dropdown-menu{display:grid}
+.dropdown-menu button{
+  border:0;background:transparent;text-align:left;padding:10px;border-radius:var(--radius-sm);
+  cursor:pointer;color:var(--gray-800);font:500 14px "Roboto",sans-serif;
+}
+.dropdown-menu button:hover{background:var(--dm-blue-050);color:var(--dm-blue)}
+.modal-backdrop{
+  position:fixed;inset:0;background:rgba(0,0,0,.58);z-index:100;
+  display:none;align-items:center;justify-content:center;padding:20px;
+}
+.modal-backdrop.open{display:flex}
+.modal{
+  width:min(560px,100%);background:#fff;border-radius:var(--radius-lg);box-shadow:var(--shadow-lg);
+  overflow:hidden;border:1px solid var(--gray-200);
+}
+.modal-head{display:flex;justify-content:space-between;gap:12px;padding:18px 20px;border-bottom:1px solid var(--gray-200)}
+.modal-head h3{font-family:"Roboto Condensed",sans-serif;font-size:26px}
+.modal-body{padding:20px;display:grid;gap:14px}
+.modal-foot{display:flex;justify-content:flex-end;gap:10px;padding:16px 20px;background:var(--gray-100)}
+.map-shell{display:grid;grid-template-columns:300px minmax(0,1fr);border:1px solid var(--gray-200);border-radius:var(--radius-lg);overflow:hidden;background:#fff}
+.map-list{padding:16px;border-right:1px solid var(--gray-200);display:grid;gap:10px;align-content:start}
+.map-card{
+  border:1px solid var(--gray-200);border-radius:var(--radius-md);padding:12px;cursor:pointer;background:#fff;
+}
+.map-card.active{border-color:var(--dm-blue);background:var(--dm-blue-050)}
+.map-card b{display:flex;align-items:center;gap:7px;font-family:"Roboto Condensed",sans-serif;font-size:18px;margin-bottom:3px}
+.map-card span{font-size:12px;color:var(--gray-600)}
+.map-view{
+  min-height:340px;position:relative;overflow:hidden;
+  background:
+    linear-gradient(0deg,rgba(0,102,204,.08) 1px,transparent 1px) 0 0/100% 34px,
+    linear-gradient(90deg,rgba(0,102,204,.08) 1px,transparent 1px) 0 0/34px 100%,
+    linear-gradient(135deg,#edf5fb,#dfeaf2);
+}
+.map-road{position:absolute;background:#fff;border-radius:999px;box-shadow:0 1px 2px rgba(0,0,0,.04)}
+.map-pin{
+  position:absolute;transform:translate(-50%,-100%);background:var(--dm-blue);color:#fff;
+  padding:6px 10px;border-radius:16px 16px 16px 4px;font-size:12px;font-weight:700;box-shadow:var(--shadow-md);
+  display:inline-flex;align-items:center;gap:5px;
+}
+.map-pin .icon{width:13px;height:13px}
+.map-pin.muted{background:var(--gray-700)}
+.tracking-card{border:1px solid var(--gray-200);border-radius:var(--radius-lg);padding:18px;background:#fff}
+.tracking-head{display:flex;justify-content:space-between;gap:14px;align-items:start;margin-bottom:16px}
+.timeline{display:grid;gap:0}
+.timeline-step{display:grid;grid-template-columns:34px minmax(0,1fr);gap:12px;position:relative;padding-bottom:18px}
+.timeline-step:before{content:"";position:absolute;left:16px;top:34px;bottom:0;width:2px;background:var(--gray-200)}
+.timeline-step:last-child:before{display:none}
+.timeline-dot{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;background:var(--gray-200);color:var(--gray-700);font-weight:700}
+.timeline-dot .icon{width:16px;height:16px}
+.timeline-step.done .timeline-dot,.timeline-step.active .timeline-dot{background:var(--dm-blue);color:#fff}
+.timeline-step.active .timeline-dot{box-shadow:0 0 0 5px var(--dm-blue-100)}
+.timeline-copy b{display:block;font-size:14px}
+.timeline-copy span{display:block;margin-top:3px;font-size:12px;color:var(--gray-600)}
+.profile-card{display:grid;grid-template-columns:92px minmax(0,1fr);gap:16px;align-items:start}
+.avatar{
+  width:92px;height:92px;border-radius:22px;background:linear-gradient(135deg,var(--dm-blue),var(--gray-900));
+  color:#fff;display:grid;place-items:center;font-family:"Roboto Condensed",sans-serif;font-size:28px;font-weight:700;
+}
+.avatar-stack{display:grid;place-items:center;gap:2px}
+.avatar-stack small{font-family:"Roboto Condensed",sans-serif;font-size:18px;font-weight:700;letter-spacing:.04em}
+.profile-meta{display:grid;gap:8px}
+.profile-meta h3{font-family:"Roboto Condensed",sans-serif;font-size:28px}
+.meta-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.meta-item{padding:10px;border:1px solid var(--gray-200);border-radius:var(--radius-sm);background:var(--gray-100)}
+.meta-item span{display:flex;align-items:center;gap:6px;font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--gray-500);font-weight:700}
+.meta-item span .icon{width:13px;height:13px}
+.meta-item b{display:block;margin-top:3px;font-size:13px}
+.ticket-board{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.ticket-col{background:var(--gray-100);border:1px solid var(--gray-200);border-radius:var(--radius-lg);padding:12px;display:grid;gap:10px;align-content:start}
+.ticket-col h3{font-family:"Roboto Condensed",sans-serif;font-size:21px;display:flex;justify-content:space-between}
+.ticket{
+  background:#fff;border:1px solid var(--gray-200);border-radius:var(--radius-md);padding:12px;display:grid;gap:8px;box-shadow:var(--shadow-sm)
+}
+.ticket b{font-size:14px}.ticket p{font-size:12px;color:var(--gray-600);line-height:1.45}
+.ticket-actions{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.mini-btn{border:0;background:var(--dm-blue);color:#fff;border-radius:var(--radius-xs);padding:6px 9px;font-size:12px;font-weight:700;cursor:pointer;display:inline-flex;align-items:center;gap:5px}
+.toast{
+  position:fixed;right:18px;bottom:18px;background:var(--gray-900);color:#fff;border-radius:var(--radius-md);
+  padding:12px 14px;box-shadow:var(--shadow-lg);z-index:110;display:none;font-size:13px;
+}
+.toast.show{display:block}
+@media (max-width:980px){
+  .app{grid-template-columns:1fr}
+  .side{position:relative;height:auto}
+  .nav{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .g2,.g3,.g4,.library-map,.do-dont{grid-template-columns:1fr}
+  .hero{min-height:560px;padding:42px 24px}
+  .section{padding:42px 22px}
+  .type-line{grid-template-columns:1fr}
+  .stepper{grid-template-columns:1fr;gap:16px}
+  .step:before{display:none}
+  .menu-content{grid-template-columns:1fr}
+  .map-shell,.ticket-board,.profile-card,.meta-grid{grid-template-columns:1fr}
+  .icon-library{grid-template-columns:repeat(3,minmax(0,1fr))}
+}
+</style>
+</head>
+<body>
+<svg aria-hidden="true" width="0" height="0" style="position:absolute;overflow:hidden">
+  <symbol id="i-arrow-left" viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></symbol>
+  <symbol id="i-arrow-right" viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></symbol>
+  <symbol id="i-calendar" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4M8 3v4M3 11h18"/></symbol>
+  <symbol id="i-download" viewBox="0 0 24 24"><path d="M12 3v12"/><path d="M7 10l5 5 5-5"/><path d="M5 21h14"/></symbol>
+  <symbol id="i-filter" viewBox="0 0 24 24"><path d="M4 5h16"/><path d="M7 12h10"/><path d="M10 19h4"/></symbol>
+  <symbol id="i-file" viewBox="0 0 24 24"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5"/><path d="M9 13h6M9 17h4"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></symbol>
+  <symbol id="i-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 11v5"/><path d="M12 8h.01"/></symbol>
+  <symbol id="i-warning" viewBox="0 0 24 24"><path d="M12 3l10 18H2z"/><path d="M12 9v5"/><path d="M12 17h.01"/></symbol>
+  <symbol id="i-error" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M15 9l-6 6M9 9l6 6"/></symbol>
+  <symbol id="i-user" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.7-4 4.4-6 8-6s6.3 2 8 6"/></symbol>
+  <symbol id="i-building" viewBox="0 0 24 24"><path d="M4 21V5a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v16"/><path d="M9 21v-5h3v5"/><path d="M8 7h1M12 7h1M8 11h1M12 11h1M17 10h1a2 2 0 0 1 2 2v9"/></symbol>
+  <symbol id="i-truck" viewBox="0 0 24 24"><path d="M3 7h11v9H3z"/><path d="M14 10h4l3 3v3h-7"/><circle cx="7" cy="18" r="2"/><circle cx="18" cy="18" r="2"/></symbol>
+  <symbol id="i-clipboard" viewBox="0 0 24 24"><path d="M9 4h6l1 2h3v15H5V6h3z"/><path d="M9 12h6M9 16h4"/></symbol>
+  <symbol id="i-map-pin" viewBox="0 0 24 24"><path d="M12 21s7-5.2 7-11a7 7 0 0 0-14 0c0 5.8 7 11 7 11z"/><circle cx="12" cy="10" r="2.5"/></symbol>
+  <symbol id="i-ticket" viewBox="0 0 24 24"><path d="M4 8a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v3a2 2 0 0 0 0 4v3a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-3a2 2 0 0 0 0-4z"/><path d="M9 8v8"/></symbol>
+  <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+  <symbol id="i-x" viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12"/></symbol>
+</svg>
+<div class="app">
+  <aside class="side">
+    <div class="brand">
+      <div class="brand-mark">MI PORTAL <span>LATAM</span></div>
+      <small>Propuesta de Design System Angular para clientes corporativos Kaufmann Chile y Divemotor Perú.</small>
+    </div>
+    <nav class="nav" aria-label="Secciones">
+      <a href="#vision"><b>01</b> Visión</a>
+      <a href="#marca"><b>02</b> Marca</a>
+      <a href="#tokens"><b>03</b> Tokens</a>
+      <a href="#layout"><b>04</b> Layout</a>
+      <a href="#componentes"><b>05</b> Componentes</a>
+      <a href="#angular"><b>06</b> Angular</a>
+      <a href="#gobierno"><b>07</b> Gobierno</a>
+      <a href="#roadmap"><b>08</b> Roadmap</a>
+    </nav>
+    <div class="side-note">
+      Base revisada: BrandBook Divemotor, sitio público Divemotor y entregables previos de Mi Portal LATAM existentes en este proyecto.
+    </div>
+  </aside>
+
+  <main class="main">
+    <header class="hero">
+      <span class="eyebrow">Design System Angular | Portal corporativo</span>
+      <h1>Una librería común para operar flotas, servicios y pagos en Chile y Perú.</h1>
+      <p>
+        El sistema combina la identidad Divemotor con una base regional reutilizable:
+        sobria, operacional, accesible y preparada para escalar interfaces de clientes corporativos.
+      </p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="#componentes"><svg class="icon icon-sm"><use href="#i-clipboard"/></svg>Ver componentes</a>
+        <a class="btn btn-outline" href="#angular"><svg class="icon icon-sm"><use href="#i-building"/></svg>Arquitectura Angular</a>
+      </div>
+    </header>
+
+    <section class="section white" id="vision">
+      <div class="section-head">
+        <span class="eyebrow" style="background:var(--dm-blue-100);color:var(--dm-blue-900);border-color:#CFE3FF">01 | Visión</span>
+        <h2>Sistema operativo visual para clientes corporativos.</h2>
+        <p>
+          El portal no debe sentirse como un sitio comercial. Debe funcionar como una herramienta de trabajo:
+          rápida para revisar información, consistente para tomar decisiones y clara para ejecutar acciones frecuentes.
+        </p>
+      </div>
+      <div class="grid g3">
+        <article class="panel">
+          <h3>Multiempresa</h3>
+          <p>Soporta cambio de razón social, RUC/RUT, país, unidad de negocio y permisos por rol sin rediseñar componentes.</p>
+          <div class="pill-row"><span class="pill blue">Kaufmann Chile</span><span class="pill orange">Divemotor Perú</span></div>
+        </article>
+        <article class="panel">
+          <h3>Operacional</h3>
+          <p>Prioriza tablas, estados, filtros, históricos, documentos, trazabilidad de solicitudes y acciones contextuales.</p>
+          <div class="pill-row"><span class="pill">Flota</span><span class="pill">Contratos</span><span class="pill">Pagos</span></div>
+        </article>
+        <article class="panel">
+          <h3>Escalable</h3>
+          <p>Organiza la librería como design tokens, primitives, componentes core y patrones por dominio.</p>
+          <div class="pill-row"><span class="pill ok">Angular</span><span class="pill">Storybook</span><span class="pill">Tokens</span></div>
+        </article>
+      </div>
+
+      <div class="interactive-zone">
+        <article class="component-demo">
+          <div class="demo-top"><h3>Slider de imágenes</h3><span class="badge info">Interactivo</span></div>
+          <div class="demo-body">
+            <div class="slider" data-slider>
+              <div class="slide-item active" style="background-image:url('https://www.divemotor.com/documents/d/guest/categoria-camion')">
+                <div class="slide-copy"><h3>Camiones para operación intensiva</h3><p>Bloques visuales con fotografía de producto, overlay oscuro y acción contextual.</p></div>
+              </div>
+              <div class="slide-item" style="background-image:url('https://www.divemotor.com/documents/d/guest/vans-1-')">
+                <div class="slide-copy"><h3>Vans y servicios urbanos</h3><p>Útil para destacar campañas, unidades recientes o categorías de flota.</p></div>
+              </div>
+              <div class="slide-item" style="background-image:url('https://www.divemotor.com/documents/d/guest/bus_web_portada')">
+                <div class="slide-copy"><h3>Buses y transporte de pasajeros</h3><p>Preparado para hero interno, módulos promocionales o accesos rápidos.</p></div>
+              </div>
+              <div class="dots" aria-label="Selector de láminas"></div>
+              <div class="slider-controls">
+                <button class="icon-btn" data-slider-prev aria-label="Imagen anterior"><svg class="icon"><use href="#i-arrow-left"/></svg></button>
+                <button class="icon-btn" data-slider-next aria-label="Imagen siguiente"><svg class="icon"><use href="#i-arrow-right"/></svg></button>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <div class="grid g2">
+          <article class="component-demo">
+            <div class="demo-top"><h3>Listas desplegables y modal</h3><span class="badge info">Formularios</span></div>
+            <div class="demo-body">
+              <div class="toolbar">
+                <div class="dropdown" data-dropdown>
+                  <button class="dropdown-toggle" type="button"><span data-dropdown-label>Empresa</span><strong>⌄</strong></button>
+                  <div class="dropdown-menu">
+                    <button type="button">Transportes Andinos S.A.C.</button>
+                    <button type="button">Minera San Gabriel</button>
+                    <button type="button">Constructora Norte</button>
+                  </div>
+                </div>
+                <div class="dropdown" data-dropdown>
+                  <button class="dropdown-toggle" type="button"><span data-dropdown-label>País</span><strong>⌄</strong></button>
+                  <div class="dropdown-menu">
+                    <button type="button">Perú | Divemotor</button>
+                    <button type="button">Chile | Kaufmann</button>
+                  </div>
+                </div>
+                <button class="btn btn-primary" data-open-modal="ticket-modal"><svg class="icon icon-sm"><use href="#i-plus"/></svg>Abrir modal</button>
+              </div>
+              <div class="alert ok"><span class="icon-badge"><svg class="icon"><use href="#i-check"/></svg></span><div><strong>Selección contextual</strong><p>Los dropdowns actualizan su etiqueta y pueden mapearse a Reactive Forms en Angular.</p></div><span></span></div>
+            </div>
+          </article>
+
+          <article class="component-demo">
+            <div class="demo-top"><h3>Perfil de cliente</h3><span class="badge info">Cuenta</span></div>
+            <div class="demo-body">
+              <div class="profile-card">
+                <div class="avatar"><div class="avatar-stack"><svg class="icon icon-lg"><use href="#i-user"/></svg><small>TA</small></div></div>
+                <div class="profile-meta">
+                  <div>
+                    <h3>Transportes Andinos</h3>
+                    <p>Cliente corporativo | RUC 20123456789</p>
+                  </div>
+                  <div class="meta-grid">
+                    <div class="meta-item"><span><svg class="icon"><use href="#i-user"/></svg>Ejecutivo</span><b>María Fernanda Rojas</b></div>
+                    <div class="meta-item"><span><svg class="icon"><use href="#i-truck"/></svg>Flota</span><b>128 unidades</b></div>
+                    <div class="meta-item"><span><svg class="icon"><use href="#i-building"/></svg>Segmento</span><b>Vehículos comerciales</b></div>
+                    <div class="meta-item"><span><svg class="icon"><use href="#i-check"/></svg>Estado</span><b>Cuenta activa</b></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </article>
+        </div>
+
+        <article class="component-demo">
+          <div class="demo-top"><h3>Vista en mapa</h3><span class="badge info">Concesionarios y talleres</span></div>
+          <div class="demo-body">
+            <div class="map-shell">
+              <div class="map-list">
+                <div class="map-card active" data-map-point="surquillo"><b><svg class="icon icon-sm"><use href="#i-map-pin"/></svg>Surquillo</b><span>Av. República de Panamá 4613</span></div>
+                <div class="map-card" data-map-point="trujillo"><b><svg class="icon icon-sm"><use href="#i-map-pin"/></svg>Trujillo</b><span>Av. Teodoro Valcárcel 983</span></div>
+                <div class="map-card" data-map-point="piura"><b><svg class="icon icon-sm"><use href="#i-map-pin"/></svg>Piura</b><span>Parque Piura Futura</span></div>
+              </div>
+              <div class="map-view">
+                <div class="map-road" style="left:8%;right:14%;top:44%;height:14px;transform:rotate(-10deg)"></div>
+                <div class="map-road" style="left:42%;top:0;bottom:0;width:12px;transform:rotate(12deg)"></div>
+                <div class="map-road" style="left:12%;right:5%;top:68%;height:10px;transform:rotate(7deg)"></div>
+                <div class="map-pin" data-pin="surquillo" style="left:58%;top:48%"><svg class="icon"><use href="#i-map-pin"/></svg>Surquillo</div>
+                <div class="map-pin muted" data-pin="trujillo" style="left:34%;top:30%"><svg class="icon"><use href="#i-map-pin"/></svg>Trujillo</div>
+                <div class="map-pin muted" data-pin="piura" style="left:72%;top:70%"><svg class="icon"><use href="#i-map-pin"/></svg>Piura</div>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <div class="grid g2">
+          <article class="component-demo">
+            <div class="demo-top"><h3>Card de tracking de estados</h3><span class="badge info">Seguimiento</span></div>
+            <div class="demo-body">
+              <div class="tracking-card">
+                <div class="tracking-head">
+                  <div><h3>Solicitud #MP-2481</h3><p>Agendamiento taller para unidad DFG-882</p></div>
+                  <span class="badge warn">En validación</span>
+                </div>
+                <div class="timeline">
+                  <div class="timeline-step done"><div class="timeline-dot"><svg class="icon icon-sm"><use href="#i-ticket"/></svg></div><div class="timeline-copy"><b>Ingresada</b><span>03 Jun 2026, 09:12</span></div></div>
+                  <div class="timeline-step done"><div class="timeline-dot"><svg class="icon icon-sm"><use href="#i-file"/></svg></div><div class="timeline-copy"><b>Documentos recibidos</b><span>Contacto y unidad confirmados</span></div></div>
+                  <div class="timeline-step active"><div class="timeline-dot"><svg class="icon icon-sm"><use href="#i-map-pin"/></svg></div><div class="timeline-copy"><b>Validación de taller</b><span>Esperando disponibilidad de asesor</span></div></div>
+                  <div class="timeline-step"><div class="timeline-dot"><svg class="icon icon-sm"><use href="#i-check"/></svg></div><div class="timeline-copy"><b>Confirmación</b><span>Fecha y hora final</span></div></div>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article class="component-demo">
+            <div class="demo-top"><h3>Sistema de tickets</h3><span class="badge info">Soporte</span></div>
+            <div class="demo-body">
+              <div class="ticket-board">
+                <div class="ticket-col" data-ticket-col="open">
+                  <h3>Abiertos <span>2</span></h3>
+                  <div class="ticket">
+                    <b>#TK-1048 Factura no visible</b>
+                    <p>Cliente solicita descarga de factura F001-923.</p>
+                    <div class="ticket-actions"><span class="badge warn">Alta</span><button class="mini-btn" data-move-ticket><svg class="icon icon-sm"><use href="#i-arrow-right"/></svg>Avanzar</button></div>
+                  </div>
+                  <div class="ticket">
+                    <b>#TK-1051 Actualizar contacto</b>
+                    <p>Cambiar responsable de flota para sede Lima.</p>
+                    <div class="ticket-actions"><span class="badge info">Media</span><button class="mini-btn" data-move-ticket><svg class="icon icon-sm"><use href="#i-arrow-right"/></svg>Avanzar</button></div>
+                  </div>
+                </div>
+                <div class="ticket-col" data-ticket-col="progress">
+                  <h3>En curso <span>1</span></h3>
+                  <div class="ticket">
+                    <b>#TK-1039 Garantía</b>
+                    <p>Validación de documento pendiente.</p>
+                    <div class="ticket-actions"><span class="badge info">Media</span><button class="mini-btn" data-move-ticket><svg class="icon icon-sm"><use href="#i-arrow-right"/></svg>Avanzar</button></div>
+                  </div>
+                </div>
+                <div class="ticket-col" data-ticket-col="closed">
+                  <h3>Cerrados <span>0</span></h3>
+                </div>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="marca">
+      <div class="section-head">
+        <span class="eyebrow" style="background:var(--dm-blue-100);color:var(--dm-blue-900);border-color:#CFE3FF">02 | Marca</span>
+        <h2>Identidad base: moderna, simple y confiable.</h2>
+        <p>
+          El BrandBook plantea una línea simple, moderna y elegante, con experiencia intuitiva y agradable.
+          El sitio público refuerza una composición de alto contraste: negro, blanco, azul intenso, fotografía de vehículos y títulos condensados.
+        </p>
+      </div>
+      <div class="grid g4">
+        <div class="swatch">
+          <div class="swatch-color" style="background:var(--dm-blue)"></div>
+          <div class="swatch-body"><b>Principal</b><code>#0066CC</code></div>
+        </div>
+        <div class="swatch">
+          <div class="swatch-color" style="background:var(--dm-orange)"></div>
+          <div class="swatch-body"><b>Secundario</b><code>#E6750C</code></div>
+        </div>
+        <div class="swatch">
+          <div class="swatch-color" style="background:var(--gray-900)"></div>
+          <div class="swatch-body"><b>Negro 2</b><code>#171D25</code></div>
+        </div>
+        <div class="swatch">
+          <div class="swatch-color" style="background:var(--gray-100)"></div>
+          <div class="swatch-body"><b>Superficie</b><code>#F5F6F8</code></div>
+        </div>
+      </div>
+      <div class="grid g2" style="margin-top:18px">
+        <article class="panel">
+          <h3>Modo Divemotor</h3>
+          <p>Usa azul Divemotor como acción primaria, negro para navegación superior y naranja como apoyo comercial o foco secundario.</p>
+          <ul class="list">
+            <li>Títulos: Roboto Condensed, alto impacto y buena lectura en módulos.</li>
+            <li>Cuerpo: Roboto, escala compacta para datos y formularios.</li>
+            <li>Imágenes: vehículos con margen de paisaje, sobreimpresiones oscuras y contenido legible.</li>
+          </ul>
+        </article>
+        <article class="panel">
+          <h3>Modo Kaufmann</h3>
+          <p>La librería debe permitir theme switching para Chile sin duplicar componentes: cambia tokens de marca, mantiene layout, estados y comportamiento.</p>
+          <ul class="list">
+            <li>Primary cambia a azul Kaufmann, con cian como acento.</li>
+            <li>Componentes comparten estructura, accesibilidad y APIs.</li>
+            <li>El país define formatos, textos legales, monedas y documentos.</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section class="section white" id="tokens">
+      <div class="section-head">
+        <span class="eyebrow" style="background:var(--dm-blue-100);color:var(--dm-blue-900);border-color:#CFE3FF">03 | Tokens</span>
+        <h2>Fundaciones listas para llevar a Angular.</h2>
+        <p>La recomendación es publicar tokens en SCSS/CSS variables y consumirlos desde componentes standalone.</p>
+      </div>
+      <div class="grid g2">
+        <article class="panel">
+          <h3>Tipografía</h3>
+          <div class="type-spec">
+            <div class="type-line"><strong>Heading 1</strong><div class="sample" style="font-size:56px;line-height:61.6px">Dashboard</div><div class="meta">56 / 61.6</div></div>
+            <div class="type-line"><strong>Heading 2</strong><div class="sample" style="font-size:48px;line-height:52.8px">Flota activa</div><div class="meta">48 / 52.8</div></div>
+            <div class="type-line"><strong>Heading 3</strong><div class="sample" style="font-size:40px;line-height:44px">Contratos</div><div class="meta">40 / 44</div></div>
+            <div class="type-line"><strong>Heading 6</strong><div class="sample" style="font-size:18px;line-height:22px">Tabla de unidades</div><div class="meta">18 / 22</div></div>
+            <div class="type-line"><strong>Body</strong><div style="font-size:16px;line-height:22.4px">Texto regular de formularios y contenido operacional.</div><div class="meta">16 / 22.4</div></div>
+          </div>
+        </article>
+        <article class="tokens">
+<pre>:root {
+  --mp-color-primary: #0066CC;
+  --mp-color-secondary: #E6750C;
+  --mp-color-success: #27AE60;
+  --mp-color-warning: #E2B93B;
+  --mp-color-error: #EB5757;
+  --mp-color-info: #2F80ED;
+
+  --mp-font-title: "Roboto Condensed", sans-serif;
+  --mp-font-body: "Roboto", sans-serif;
+
+  --mp-radius-card: 15px;
+  --mp-radius-control: 10px;
+  --mp-shadow-card: 0 8px 24px rgba(0,0,0,.10);
+  --mp-layout-sidebar: 280px;
+  --mp-layout-content-max: 1280px;
+}</pre>
+        </article>
+      </div>
+    </section>
+
+    <section class="section dark" id="layout">
+      <div class="section-head">
+        <span class="eyebrow">04 | Layout</span>
+        <h2>Layouts para trabajo repetido y lectura rápida.</h2>
+        <p>La librería debe cubrir plantillas de portal, módulos de dashboard, grillas responsivas y layouts de detalle.</p>
+      </div>
+      <div class="grid g3">
+        <article class="panel">
+          <h3>Shell corporativo</h3>
+          <p>Header negro o azul, selector de empresa, selector de país, buscador global, centro de ayuda y usuario.</p>
+        </article>
+        <article class="panel">
+          <h3>Sidebar modular</h3>
+          <p>Menú por dominios: Inicio, Flota, Taller, Contratos, Pagos, Documentos, Solicitudes, Administración.</p>
+        </article>
+        <article class="panel">
+          <h3>Content grid</h3>
+          <p>Contenedor máximo de 1280 px, columnas 12, gutters de 24 px desktop y 16 px mobile.</p>
+        </article>
+      </div>
+      <div class="menu-demo" style="margin-top:20px">
+        <div class="menu-bar">
+          <div class="menu-logo">DIVEMOTOR</div>
+          <div class="menu-links"><span class="active">Mi flota</span><span>Taller</span><span>Pagos</span><span>Documentos</span></div>
+          <a class="btn btn-primary" href="#componentes"><svg class="icon icon-sm"><use href="#i-plus"/></svg>Nueva solicitud</a>
+        </div>
+        <div class="menu-content">
+          <div class="menu-tile" style="background-image:url('https://www.divemotor.com/documents/d/guest/categoria-camion')"><b>Vehículos comerciales</b></div>
+          <div class="menu-tile" style="background-image:url('https://www.divemotor.com/documents/d/guest/bus_web_portada')"><b>Servicios de postventa</b></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section white" id="componentes">
+      <div class="section-head">
+        <span class="eyebrow" style="background:var(--dm-blue-100);color:var(--dm-blue-900);border-color:#CFE3FF">05 | Componentes</span>
+        <h2>Catálogo recomendado para la primera versión.</h2>
+        <p>Los componentes están pensados para escenarios reales del portal: consulta de vehículos, agendamiento, pagos, certificados, contratos y solicitudes.</p>
+      </div>
+
+      <article class="component-demo" style="margin-bottom:18px">
+        <div class="demo-top"><h3>Librería de iconos</h3><span class="badge info">SVG lineal</span></div>
+        <div class="demo-body">
+          <div class="icon-library">
+            <div class="icon-sample"><svg class="icon"><use href="#i-calendar"/></svg><span>calendar</span></div>
+            <div class="icon-sample"><svg class="icon"><use href="#i-truck"/></svg><span>truck</span></div>
+            <div class="icon-sample"><svg class="icon"><use href="#i-map-pin"/></svg><span>map-pin</span></div>
+            <div class="icon-sample"><svg class="icon"><use href="#i-ticket"/></svg><span>ticket</span></div>
+            <div class="icon-sample"><svg class="icon"><use href="#i-user"/></svg><span>user</span></div>
+            <div class="icon-sample"><svg class="icon"><use href="#i-warning"/></svg><span>warning</span></div>
+          </div>
+          <div class="quote">
+            Propuesta Angular: exponerlos como <strong>mp-icon</strong> con nombres semánticos y color heredado por CSS, para que botones, alerts, mapas, perfiles y steppers compartan el mismo lenguaje visual.
+          </div>
+        </div>
+      </article>
+
+      <div class="grid g2">
+        <article class="component-demo">
+          <div class="demo-top"><h3>Botones y controles</h3><span class="badge info">Core</span></div>
+          <div class="demo-body">
+            <div class="toolbar">
+              <button class="btn btn-primary"><svg class="icon icon-sm"><use href="#i-calendar"/></svg>Reservar cita</button>
+              <button class="btn btn-secondary"><svg class="icon icon-sm"><use href="#i-file"/></svg>Cotizar</button>
+              <button class="btn btn-light"><svg class="icon icon-sm"><use href="#i-download"/></svg>Descargar</button>
+            </div>
+            <div class="toolbar">
+              <div class="field">Marca <span>Mercedes-Benz</span></div>
+              <div class="field">Modelo <span>Todos</span></div>
+            </div>
+            <div class="radio-group">
+              <label class="radio active"><i></i> Automóviles</label>
+              <label class="radio"><i></i> Camiones</label>
+              <label class="radio"><i></i> Buses</label>
+            </div>
+          </div>
+        </article>
+
+        <article class="component-demo">
+          <div class="demo-top"><h3>Cards</h3><span class="badge info">Data + media</span></div>
+          <div class="demo-body grid g2">
+            <div class="panel stat-card">
+              <span class="label">Vehículos activos</span>
+              <span class="value">128</span>
+              <span class="badge ok">Operación normal</span>
+            </div>
+            <div class="panel media-card">
+              <div class="media-visual" style="background-image:url('https://www.divemotor.com/documents/d/guest/categoria-automovil')" role="img" aria-label="Automóvil Divemotor"></div>
+              <div class="panel-content">
+                <h3>Próxima mantención</h3>
+                <p>Unidad ABC-123 programada para el 12 de junio.</p>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="component-demo">
+          <div class="demo-top"><h3>Alerts</h3><span class="badge info">Estados</span></div>
+          <div class="demo-body">
+            <div class="alert info"><span class="icon-badge"><svg class="icon"><use href="#i-info"/></svg></span><div><strong>Información disponible</strong><p>El certificado ya puede descargarse desde Documentos.</p></div><button class="btn btn-light"><svg class="icon icon-sm"><use href="#i-file"/></svg>Ver</button></div>
+            <div class="alert warn"><span class="icon-badge"><svg class="icon"><use href="#i-warning"/></svg></span><div><strong>Pago por vencer</strong><p>Factura F001-923 vence en 3 días hábiles.</p></div><button class="btn btn-light"><svg class="icon icon-sm"><use href="#i-calendar"/></svg>Pagar</button></div>
+            <div class="alert error"><span class="icon-badge"><svg class="icon"><use href="#i-error"/></svg></span><div><strong>Solicitud rechazada</strong><p>Falta adjuntar poder de representación.</p></div><button class="btn btn-light"><svg class="icon icon-sm"><use href="#i-file"/></svg>Corregir</button></div>
+          </div>
+        </article>
+
+        <article class="component-demo">
+          <div class="demo-top"><h3>Stepper</h3><span class="badge info">Procesos</span></div>
+          <div class="demo-body">
+            <div class="stepper">
+              <div class="step done"><div class="step-num"><svg class="icon"><use href="#i-user"/></svg></div><b>Datos</b><span>Empresa y contacto</span></div>
+              <div class="step done"><div class="step-num"><svg class="icon"><use href="#i-truck"/></svg></div><b>Vehículo</b><span>Unidad y servicio</span></div>
+              <div class="step active"><div class="step-num"><svg class="icon"><use href="#i-calendar"/></svg></div><b>Agenda</b><span>Fecha y taller</span></div>
+              <div class="step"><div class="step-num"><svg class="icon"><use href="#i-check"/></svg></div><b>Confirmación</b><span>Resumen final</span></div>
+            </div>
+          </div>
+        </article>
+
+        <article class="component-demo">
+          <div class="demo-top"><h3>Acordeón</h3><span class="badge info">Contenido legal y FAQ</span></div>
+          <div class="demo-body">
+            <div class="accordion">
+              <div class="acc-item">
+                <div class="acc-title">01 ¿Cómo solicitar una cita? <span>-</span></div>
+                <div class="acc-body">Selecciona unidad, tipo de servicio, taller disponible y confirma los datos del contacto responsable.</div>
+              </div>
+              <div class="acc-item closed">
+                <div class="acc-title">02 ¿Qué documentos necesito? <span>+</span></div>
+                <div class="acc-body">Documento de empresa, contacto autorizado y datos de vehículo.</div>
+              </div>
+              <div class="acc-item closed">
+                <div class="acc-title">03 ¿Puedo reagendar? <span>+</span></div>
+                <div class="acc-body">Sí, mientras la cita no se encuentre en atención.</div>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="component-demo">
+          <div class="demo-top"><h3>Tabla operacional</h3><span class="badge info">Flota</span></div>
+          <div class="demo-body">
+            <div class="toolbar">
+              <div class="field">Buscar unidad</div>
+              <div class="field">Estado <span>Todos</span></div>
+              <button class="btn btn-primary"><svg class="icon icon-sm"><use href="#i-filter"/></svg>Filtrar</button>
+            </div>
+            <div class="table-wrap">
+              <table>
+                <thead><tr><th>Patente</th><th>Marca</th><th>Contrato</th><th>Próximo hito</th><th>Estado</th><th>Acción</th></tr></thead>
+                <tbody>
+                  <tr><td>ABC-123</td><td>Mercedes-Benz</td><td>Full Service</td><td>12 Jun 2026</td><td><span class="badge ok">Al día</span></td><td>Ver detalle</td></tr>
+                  <tr><td>DFG-882</td><td>Freightliner</td><td>Mantención</td><td>18 Jun 2026</td><td><span class="badge warn">Próximo</span></td><td>Agendar</td></tr>
+                  <tr><td>HJK-451</td><td>Mercedes-Benz</td><td>Garantía</td><td>Documento pendiente</td><td><span class="badge error">Bloqueado</span></td><td>Resolver</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="angular">
+      <div class="section-head">
+        <span class="eyebrow" style="background:var(--dm-blue-100);color:var(--dm-blue-900);border-color:#CFE3FF">06 | Angular</span>
+        <h2>Librería propuesta.</h2>
+        <p>Separar piezas visuales, patrones de dominio y servicios transversales permitirá que Chile y Perú avancen juntos sin acoplar reglas locales.</p>
+      </div>
+      <div class="library-map">
+        <article class="lib-card">
+          <h3>@mi-portal/tokens</h3>
+          <ul>
+            <li>Colores, tipografías, radios, sombras.</li>
+            <li>Themes: divemotor, kaufmann.</li>
+            <li>Mixins SCSS y CSS variables.</li>
+          </ul>
+        </article>
+        <article class="lib-card">
+          <h3>@mi-portal/ui</h3>
+          <ul>
+            <li>Button, input, select, radio, checkbox.</li>
+            <li>Alert, badge, card, table, accordion.</li>
+            <li>Menu, tabs, modal, drawer, stepper.</li>
+          </ul>
+        </article>
+        <article class="lib-card">
+          <h3>@mi-portal/layout</h3>
+          <ul>
+            <li>App shell, topbar, sidebar.</li>
+            <li>Page header, grid, empty states.</li>
+            <li>Responsive utilities.</li>
+          </ul>
+        </article>
+        <article class="lib-card">
+          <h3>@mi-portal/domain</h3>
+          <ul>
+            <li>Vehicle card, contract summary.</li>
+            <li>Payment status, service appointment.</li>
+            <li>Document list, request timeline.</li>
+          </ul>
+        </article>
+        <article class="lib-card">
+          <h3>@mi-portal/forms</h3>
+          <ul>
+            <li>Form field wrapper.</li>
+            <li>Validaciones RUT/RUC.</li>
+            <li>Máscaras de moneda, teléfono y documento.</li>
+          </ul>
+        </article>
+        <article class="lib-card">
+          <h3>@mi-portal/storybook</h3>
+          <ul>
+            <li>Catálogo vivo de componentes.</li>
+            <li>Estados, accesibilidad y ejemplos.</li>
+            <li>Documentación para frontend y UX.</li>
+          </ul>
+        </article>
+      </div>
+
+      <div class="component-demo" style="margin-top:20px">
+        <div class="demo-top"><h3>APIs iniciales recomendadas</h3><span class="badge info">Angular standalone</span></div>
+        <div class="table-wrap">
+          <table class="spec-table">
+            <thead><tr><th>Componente</th><th>Selector</th><th>Inputs clave</th><th>Outputs</th><th>Uso portal</th></tr></thead>
+            <tbody>
+              <tr><td>Button</td><td>mp-button</td><td>variant, size, icon, loading, disabled</td><td>clicked</td><td>Acciones primarias y secundarias</td></tr>
+              <tr><td>Data table</td><td>mp-data-table</td><td>columns, rows, selection, sort, pagination</td><td>rowAction, sortChange</td><td>Flota, facturas, documentos</td></tr>
+              <tr><td>Alert</td><td>mp-alert</td><td>type, title, closable, actionLabel</td><td>closed, action</td><td>Estados del proceso</td></tr>
+              <tr><td>Stepper</td><td>mp-stepper</td><td>steps, currentStep, orientation</td><td>stepChange</td><td>Solicitudes y agendamiento</td></tr>
+              <tr><td>Accordion</td><td>mp-accordion</td><td>items, multi, openedIds</td><td>openedChange</td><td>FAQ, legales, detalle técnico</td></tr>
+              <tr><td>App shell</td><td>mp-app-shell</td><td>brand, country, menu, user, company</td><td>companyChange, logout</td><td>Marco común del portal</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section class="section white" id="gobierno">
+      <div class="section-head">
+        <span class="eyebrow" style="background:var(--dm-blue-100);color:var(--dm-blue-900);border-color:#CFE3FF">07 | Gobierno</span>
+        <h2>Reglas para que el sistema no se fragmente.</h2>
+      </div>
+      <div class="do-dont">
+        <article class="panel">
+          <h3>Hacer</h3>
+          <ul class="list">
+            <li>Documentar cada componente con propósito, anatomía, estados y accesibilidad.</li>
+            <li>Definir ejemplos por dominio: flota, pagos, taller, contratos, certificados.</li>
+            <li>Versionar cambios con semver y changelog para equipos Chile/Perú.</li>
+            <li>Medir contraste, foco visible, navegación por teclado y responsive.</li>
+          </ul>
+        </article>
+        <article class="panel">
+          <h3>Evitar</h3>
+          <ul class="list">
+            <li>Crear variantes visuales por país dentro del componente.</li>
+            <li>Usar color como único indicador de estado.</li>
+            <li>Mezclar lógica de negocio dentro de componentes visuales.</li>
+            <li>Diseñar pantallas nuevas sin revisar Storybook y patrones existentes.</li>
+          </ul>
+        </article>
+      </div>
+      <div class="quote" style="margin-top:18px">
+        Recomendación: partir con un MVP de componentes core y 3 patrones de dominio prioritarios:
+        tabla de flota, card de vehículo y flujo de agendamiento. Eso habilita la mayoría de pantallas del portal sin sobrediseñar.
+      </div>
+    </section>
+
+    <section class="section" id="roadmap">
+      <div class="section-head">
+        <span class="eyebrow" style="background:var(--dm-blue-100);color:var(--dm-blue-900);border-color:#CFE3FF">08 | Roadmap</span>
+        <h2>Plan sugerido de implementación.</h2>
+      </div>
+      <div class="grid g4">
+        <article class="panel"><h3>Semana 1</h3><p>Tokens, themes, tipografía, botones, campos, badges, alerts y setup de Storybook.</p></article>
+        <article class="panel"><h3>Semana 2</h3><p>Shell, sidebar, tablas, cards, filtros, paginación, estados vacíos y loading.</p></article>
+        <article class="panel"><h3>Semana 3</h3><p>Acordeones, steppers, modales, formularios complejos, validaciones RUT/RUC y máscaras.</p></article>
+        <article class="panel"><h3>Semana 4</h3><p>Patrones de dominio, pruebas de accesibilidad, handoff a frontend y primer wireframe completo.</p></article>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <strong>Fuentes revisadas</strong>
+      <div class="source-list">
+        <span>BrandBook Divemotor.pdf, archivo local entregado por el usuario.</span>
+        <a href="https://www.divemotor.com/">Sitio público Divemotor</a>
+        <a href="https://www.divemotor.com/conoce-divemotor">Conoce Divemotor</a>
+        <a href="https://www.divemotor.com/centro-de-ayuda">Servicio al Cliente Divemotor</a>
+      </div>
+    </footer>
+  </main>
+</div>
+
+<div class="modal-backdrop" id="ticket-modal" role="dialog" aria-modal="true" aria-labelledby="ticket-modal-title">
+  <div class="modal">
+    <div class="modal-head">
+      <h3 id="ticket-modal-title">Crear ticket de soporte</h3>
+      <button class="icon-btn" style="background:var(--gray-100);color:var(--gray-900);border-color:var(--gray-200)" data-close-modal aria-label="Cerrar modal"><svg class="icon"><use href="#i-x"/></svg></button>
+    </div>
+    <div class="modal-body">
+      <div class="field">Categoría <span>Facturación</span></div>
+      <div class="field">Prioridad <span>Alta</span></div>
+      <div class="alert info"><span class="icon-badge"><svg class="icon"><use href="#i-info"/></svg></span><div><strong>Ticket preconfigurado</strong><p>Este patrón sirve para incidencias, requerimientos de documentos, reclamos y solicitudes operativas.</p></div><span></span></div>
+    </div>
+    <div class="modal-foot">
+      <button class="btn btn-light" data-close-modal><svg class="icon icon-sm"><use href="#i-x"/></svg>Cancelar</button>
+      <button class="btn btn-primary" data-close-modal data-toast="Ticket creado como ejemplo de interacción"><svg class="icon icon-sm"><use href="#i-ticket"/></svg>Crear ticket</button>
+    </div>
+  </div>
+</div>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script>
+(() => {
+  const showToast = (message) => {
+    const toast = document.getElementById("toast");
+    if (!toast) return;
+    toast.textContent = message;
+    toast.classList.add("show");
+    window.clearTimeout(showToast.timer);
+    showToast.timer = window.setTimeout(() => toast.classList.remove("show"), 2200);
+  };
+
+  const sliderState = new WeakMap();
+  const setSlider = (slider, next) => {
+    const slides = [...slider.querySelectorAll(".slide-item")];
+    if (!slides.length) return;
+    const index = (next + slides.length) % slides.length;
+    sliderState.set(slider, index);
+    slides.forEach((slide, i) => slide.classList.toggle("active", i === index));
+    slider.querySelectorAll(".dot-btn").forEach((dot, i) => dot.classList.toggle("active", i === index));
+  };
+
+  document.querySelectorAll("[data-slider]").forEach((slider) => {
+    const slides = [...slider.querySelectorAll(".slide-item")];
+    const dotsWrap = slider.querySelector(".dots");
+    let index = slides.findIndex((slide) => slide.classList.contains("active"));
+    if (index < 0) index = 0;
+    slides.forEach((_, i) => {
+      const dot = document.createElement("button");
+      dot.className = "dot-btn";
+      dot.type = "button";
+      dot.setAttribute("aria-label", `Ver imagen ${i + 1}`);
+      dot.addEventListener("click", () => setSlider(slider, i));
+      dotsWrap.appendChild(dot);
+    });
+
+    slider.querySelector("[data-slider-prev]").addEventListener("click", () => setSlider(slider, (sliderState.get(slider) ?? index) - 1));
+    slider.querySelector("[data-slider-next]").addEventListener("click", () => setSlider(slider, (sliderState.get(slider) ?? index) + 1));
+    setSlider(slider, index);
+  });
+
+  document.querySelectorAll(".accordion .acc-title").forEach((title) => {
+    title.style.cursor = "pointer";
+    title.addEventListener("click", () => {
+      const item = title.closest(".acc-item");
+      const isClosed = item.classList.toggle("closed");
+      const icon = title.querySelector("span");
+      if (icon) icon.textContent = isClosed ? "+" : "-";
+    });
+  });
+
+  document.querySelectorAll(".radio-group").forEach((group) => {
+    group.querySelectorAll(".radio").forEach((radio) => {
+      radio.style.cursor = "pointer";
+      radio.addEventListener("click", () => {
+        group.querySelectorAll(".radio").forEach((item) => item.classList.remove("active"));
+        radio.classList.add("active");
+      });
+    });
+  });
+
+  document.querySelectorAll("[data-dropdown]").forEach((dropdown) => {
+    const toggle = dropdown.querySelector(".dropdown-toggle");
+    const label = dropdown.querySelector("[data-dropdown-label]");
+    toggle.addEventListener("click", () => {
+      document.querySelectorAll("[data-dropdown]").forEach((item) => {
+        if (item !== dropdown) item.classList.remove("open");
+      });
+      dropdown.classList.toggle("open");
+    });
+    dropdown.querySelectorAll(".dropdown-menu button").forEach((option) => {
+      option.addEventListener("click", () => {
+        label.textContent = option.textContent.trim();
+        dropdown.classList.remove("open");
+        showToast(`Seleccionado: ${label.textContent}`);
+      });
+    });
+  });
+
+  document.addEventListener("click", (event) => {
+    if (!event.target.closest("[data-dropdown]")) {
+      document.querySelectorAll("[data-dropdown]").forEach((dropdown) => dropdown.classList.remove("open"));
+    }
+  });
+
+  document.querySelectorAll("[data-open-modal]").forEach((button) => {
+    button.addEventListener("click", () => {
+      document.getElementById(button.dataset.openModal)?.classList.add("open");
+    });
+  });
+
+  document.querySelectorAll("[data-close-modal]").forEach((button) => {
+    button.addEventListener("click", () => {
+      button.closest(".modal-backdrop")?.classList.remove("open");
+      if (button.dataset.toast) showToast(button.dataset.toast);
+    });
+  });
+
+  document.querySelectorAll(".modal-backdrop").forEach((backdrop) => {
+    backdrop.addEventListener("click", (event) => {
+      if (event.target === backdrop) backdrop.classList.remove("open");
+    });
+  });
+
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") {
+      document.querySelectorAll(".modal-backdrop.open").forEach((modal) => modal.classList.remove("open"));
+    }
+  });
+
+  document.querySelectorAll("[data-map-point]").forEach((card) => {
+    card.addEventListener("click", () => {
+      const point = card.dataset.mapPoint;
+      document.querySelectorAll("[data-map-point]").forEach((item) => item.classList.toggle("active", item === card));
+      document.querySelectorAll("[data-pin]").forEach((pin) => pin.classList.toggle("muted", pin.dataset.pin !== point));
+      showToast(`Taller seleccionado: ${card.querySelector("b").textContent}`);
+    });
+  });
+
+  document.querySelectorAll("[data-move-ticket]").forEach((button) => {
+    button.addEventListener("click", () => {
+      const ticket = button.closest(".ticket");
+      const col = ticket.closest(".ticket-col");
+      const columns = [...document.querySelectorAll(".ticket-col")];
+      const nextCol = columns[columns.indexOf(col) + 1] || columns[columns.length - 1];
+      if (nextCol !== col) {
+        nextCol.appendChild(ticket);
+        showToast("Ticket avanzado al siguiente estado");
+      } else {
+        showToast("El ticket ya está cerrado");
+      }
+      columns.forEach((column) => {
+        const count = column.querySelectorAll(".ticket").length;
+        const counter = column.querySelector("h3 span");
+        if (counter) counter.textContent = count;
+      });
+    });
+  });
+})();
+</script>
+</body>
+</html>
